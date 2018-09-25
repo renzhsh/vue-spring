@@ -1,0 +1,17 @@
+{
+    "name": "jinhe-oauth2",
+    "version": "0.2.2",
+    "description": "oauth2 登录脚本",
+    "main": "./static/index.js",
+
+    "author": "renzhsh",
+    "license": "MIT",
+    "engines": {
+        "node": ">= 4.0.0",
+        "npm": ">= 3.0.0"
+    },
+    "dependencies": {
+        "axios": "^0.15.3",
+        "vue": "^2.5.8"
+    }
+}

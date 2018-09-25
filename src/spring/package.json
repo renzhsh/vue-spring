@@ -1,0 +1,17 @@
+{
+    "name": "spring",
+    "version": "0.1.0",
+    "description": "vue 插件式开发框架",
+    "main": "./js/index.js",
+    "author": "renzhsh",
+    "license": "MIT",
+    "engines": {
+        "node": ">= 4.0.0",
+        "npm": ">= 3.0.0"
+    },
+    "dependencies": {
+        "vue": "^2.5.8",
+        "vue-router": "^3.0.1",
+        "vuex": "^2.2.1"
+    }
+}
