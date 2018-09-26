@@ -43,7 +43,7 @@ Spring
         // itcpt.addInterceptor(interceptors)
     })
     .set('userData', userData => {
-        // userData.setLocalEntryArray(userDatas)
+        userData.setLocalEntryArray(userDatas)
     })
     .use([System])
     .mount('#app');

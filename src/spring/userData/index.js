@@ -1,4 +1,5 @@
 import UserData from './userData';
+import Loading from './loading';
 
 class UserDataX {
     constructor(context) {
@@ -42,9 +43,10 @@ class UserDataX {
                 ignoreAuth: true,
                 ignoreUserData: true
             },
-            component: resolve => {
-                require(['./loading'], resolve);
-            }
+            component: Loading
+            // component: resolve => {
+            //     require(['./loading'], resolve);
+            // }
         }])
 
         this.router.beforeEach((to, from, next) => {

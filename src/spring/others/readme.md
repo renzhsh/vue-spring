@@ -14,13 +14,13 @@ Vue Spring 的最大优势在于划清了模块之间的界限，新增和删除
 # 安装 spring
 
 ```js
-npm install spring
+npm install rzs-spring
 ```
 
 # 导入
 
 ```js
-import Spring from "spring";
+import Spring from "rzs-spring";
 ```
 
 <!-- # 添加引用

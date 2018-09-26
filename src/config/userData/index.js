@@ -1,8 +1,7 @@
 import model from './model';
 import axios from 'axios';
 
-const NODE_ENV = 'production';
-// process.env.NODE_ENV;
+const NODE_ENV = process.env.NODE_ENV;
 
 function getValue(url, fn) {
     axios.get(url).then(resp => {

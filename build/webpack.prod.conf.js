@@ -12,7 +12,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
-    entry: './src/vueConfig/index.js',
+    entry: './src/spring/index.js',
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
@@ -22,8 +22,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     devtool: config.build.productionSourceMap ? '#source-map' : false,
     output: {
         path: config.build.assetsRoot,
-        filename: utils.assetsPath('index.js'),
-        library: 'VueCfg',
+        filename: utils.assetsPath('js/index.js'),
+        library: 'spring',
         libraryTarget: 'umd', // 输出格式
         umdNamedDefine: true // 是否将模块名称作为 AMD 输出的命名空间
     },
@@ -60,7 +60,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         }),
         // extract css into its own file
         new ExtractTextPlugin({
-            filename: utils.assetsPath('css/[name].[contenthash].css')
+            filename: utils.assetsPath('css/[name].css')
         }),
         // Compress extracted CSS. We are using this plugin so that possible
         // duplicated CSS from different components can be deduped.
@@ -108,8 +108,12 @@ var webpackConfig = merge(baseWebpackConfig, {
         // }),
         // copy custom static assets
         new CopyWebpackPlugin([{
-            from: path.resolve(__dirname, '../src/vueConfig/others'),
+            from: path.resolve(__dirname, '../src/spring/others'),
             to: path.resolve(__dirname, '../dist'),
+            // ignore: ['.*']
+        }, {
+            from: path.resolve(__dirname, '../src/spring/docs'),
+            to: path.resolve(__dirname, '../dist/docs'),
             // ignore: ['.*']
         }])
     ]
