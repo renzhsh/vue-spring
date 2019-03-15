@@ -8,6 +8,4 @@ SpringX.use(OAuth2)
 SpringX.use(Interceptor)
 SpringX.use(UserData)
 
-export default new SpringX();
-
-export { SpringX };
+export default SpringX;

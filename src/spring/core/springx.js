@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import App from './app';
 
 import context from './context';
 
@@ -36,7 +35,7 @@ export class SpringX {
         return this;
     }
 
-    mount(el) {
+    mount(el, app) {
         springXStartFn.forEach(fn => {
             fn();
         })
@@ -45,7 +44,7 @@ export class SpringX {
             el: el,
             router: context.router,
             store: context.store,
-            render: h => h(App)
+            render: h => h(app)
         });
     };
 }
