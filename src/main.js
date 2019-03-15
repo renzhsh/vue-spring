@@ -3,6 +3,8 @@
  */
 import Vue from 'vue'
 
+import App from './app'
+
 /**********************第三方插件*************************/
 // element-ui
 import ElementUI from 'element-ui';
@@ -13,7 +15,7 @@ Vue.use(ElementUI)
 /**********************自定义插件*************************/
 
 /**********************功能模块配置**********************/
-import Spring from './spring'
+import SpringX from './spring'
 
 import System from '@/views/System'
 
@@ -23,7 +25,9 @@ import interceptors from './config/interceptors'
 // 用户数据
 import userDatas from './config/userData';
 
-Spring
+const spring = new SpringX();
+
+spring
     .set('routerx', (routerX) => {
         // routerX
         //     .initialize({})
@@ -46,4 +50,4 @@ Spring
         userData.setLocalEntryArray(userDatas)
     })
     .use([System])
-    .mount('#app');
+    .mount('#app', App);
