@@ -55,7 +55,7 @@ class RouterX {
         });
     }
 
-    initialize(option) {
+    setup(option) {
         context.router = new VueRouter(option);
         return this;
     }
