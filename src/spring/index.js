@@ -1,4 +1,3 @@
-import './base';
 import SpringX from './core';
 import OAuth2 from './oauth2';
 import Interceptor from './interceptor';

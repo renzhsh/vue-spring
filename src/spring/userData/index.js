@@ -1,5 +1,5 @@
-import UserData from './userData';
-import Loading from './loading';
+import UserData from "./userData";
+import Loading from "./loading";
 
 class UserDataX {
     constructor(context) {
@@ -15,7 +15,7 @@ class UserDataX {
     setLocalEntryArray(list) {
         list.forEach(item => {
             this.setLocalEntry(item);
-        })
+        });
 
         return this;
     }
@@ -27,32 +27,38 @@ class UserDataX {
             this.routes = routeConfig;
         }
 
-        this.routes && this.routes.forEach(route => {
-            Object.assign(route.meta, {
-                ignoreUserData: true
-            })
-        })
+        this.routes &&
+            this.routes.forEach(route => {
+                Object.assign(route.meta, {
+                    ignoreUserData: true
+                });
+            });
 
         return this;
     }
 
     startup() {
-        this.router.addRoutes(this.routes || [{
-            path: '/data/loading',
-            meta: {
-                ignoreAuth: true,
-                ignoreUserData: true
-            },
-            component: Loading
-            // component: resolve => {
-            //     require(['./loading'], resolve);
-            // }
-        }])
+        this.router.addRoutes(
+            this.routes || [
+                {
+                    name:"userDataLoading",
+                    path: "/data/loading",
+                    meta: {
+                        ignoreAuth: true,
+                        ignoreUserData: true
+                    },
+                    component: Loading
+                    // component: resolve => {
+                    //     require(['./loading'], resolve);
+                    // }
+                }
+            ]
+        );
 
         this.router.beforeEach((to, from, next) => {
             if (!to.meta.ignoreUserData && !this.userData.ready) {
                 next({
-                    path: '/data/loading',
+                    name: "userDataLoading",
                     query: {
                         redirect: to.fullPath
                     } // 将跳转的路由path作为参数，登录成功后跳转到该路由
@@ -60,13 +66,13 @@ class UserDataX {
             } else {
                 next();
             }
-        })
+        });
     }
 }
 
 export default {
     install(SpringX, Vue, useFn, startFn, context) {
-        let userStore = context.storageFactory('_userData_');
+        let userStore = StorageFactory({ namespace: "_userData_" });
         let userData = new UserData(userStore);
 
         Vue.prototype.$userData = userData;
@@ -78,6 +84,6 @@ export default {
 
         startFn.push(() => {
             userDataX.startup();
-        })
+        });
     }
-}
+};

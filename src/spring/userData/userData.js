@@ -7,41 +7,17 @@ export default class {
     }
 
     get(key) {
-        let entry = DataList[key];
-
-        return entry ? entry.value : null;
+        return this.userStore.get(key);
     }
 
-    get EntryArray() {
+    get EntryKeys() {
         let list = [];
 
         for (var key in DataList) {
-            let entry = DataList[key];
-
-            if (entry.type == 'cache') {
-                list.push(entry);
-            } else {
-                let item = this.userStore.get(key);
-                let expired = item ? item.expired : null;
-
-                list.push(Object.assign({}, entry, {
-                    expired: expired.date2String()
-                }));
-            }
+            list.push(key)
         }
 
         return list;
-    }
-    /**
-     * 内存数据
-     */
-    setEntry(key, value, meta) {
-        DataList[key] = {
-            key: key,
-            value: value,
-            type: 'cache',
-            meta: meta
-        };
     }
 
     removeEntry(key) {
@@ -58,7 +34,6 @@ export default class {
 
         let entry = {
             key: key,
-            type: 'disk',
             value: null,
             expired: expired,
             remoteFn: remoteFn,
@@ -70,7 +45,7 @@ export default class {
         let item = this.userStore.get(key);
 
         // 已过期 或 30分钟内过期
-        if (!item || (item && item.expired < (new Date()).addMinutes(30))) {
+        if (!item || (item && item.expired < new Date() + 30 * 60 * 1000)) {
             this.ready = false;
             entry.value = await remoteFn();
             this.userStore.set(key, entry.value, expired);
@@ -78,6 +53,7 @@ export default class {
             entry.value = item.value;
         }
 
+        // 是否所有数据项都已加载完成
         if (!this.ready) {
             let exists = false;
             for (var p in DataList) {
@@ -88,15 +64,12 @@ export default class {
 
             this.ready = !exists;
         }
-
     }
 
     async updateLocalEntry(key) {
         let entry = DataList[key];
 
-        if (entry.type == 'disk') {
-            entry.value = await entry.remoteFn();
-            this.userStore.set(key, entry.value, entry.expired);
-        }
+        entry.value = await entry.remoteFn();
+        this.userStore.set(key, entry.value, entry.expired);
     }
 }
