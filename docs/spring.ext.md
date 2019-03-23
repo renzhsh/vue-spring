@@ -1,4 +1,4 @@
-# Spring 模块扩展
+# Spring 模块开发
 
 ## 1、扩展方式
 
@@ -12,35 +12,6 @@ SpringX.use(RouterX);
 ## 2、模块定义
 
 ```
-class RouterX {
-    /*
-     * 初始化参数设置
-     */
-    initialize(option) {
-        return this;
-    }
-
-    /*
-     * 常规操作
-     */
-    addRoutes(routes) {
-        return this;
-    }
-
-    useRoute({ route }) {
-        return this;
-    }
-
-    /*
-     * 启动函数
-     */
-    register() {
-        return this;
-    }
-}
-
-const routerX = new RouterX();
-
 export default {
     install: function(SpringX, Vue, useFn, startFn) {
 
