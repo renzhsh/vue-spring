@@ -1,5 +1,6 @@
 import UserData from "./userData";
 import Loading from "./loading";
+import { StorageFactory } from "../storage";
 
 class UserDataX {
     constructor(context) {
@@ -41,7 +42,7 @@ class UserDataX {
         this.router.addRoutes(
             this.routes || [
                 {
-                    name:"userDataLoading",
+                    name: "userDataLoading",
                     path: "/data/loading",
                     meta: {
                         ignoreAuth: true,
