@@ -41,6 +41,14 @@ spring.set("vuex", (vuex, context) => {
 });
 ```
 
+或者：
+
+```js
+spring.setStore((vuex, context) => {
+    vuex.setup(option).registerModule(option);
+});
+```
+
 ### routerX API
 
 #### `1. vuex.setup(option)`

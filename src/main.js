@@ -28,10 +28,14 @@ import userDatas from "./config/userData";
 const spring = new SpringX();
 
 spring
-    .set("routerx", routerX => {
-        // routerX
-        //     .initialize({})
-        //     .useRoute(Layout.route)
+    .setRouter((routerX, context) => {
+        console.dir(routerX);
+    })
+    .setStore((store, context) => {
+        console.dir(store);
+    })
+    .setHook((intcpt, context) => {
+        itcpt.addHook(interceptors);
     })
     .set("oauth2", OAuth2 => {
         OAuth2.setup({
@@ -42,9 +46,6 @@ spring
             // 客户端密钥
             ClientSecret: "abcdef"
         });
-    })
-    .set("interceptor", itcpt => {
-        // itcpt.addInterceptor(interceptors)
     })
     .set("userData", userData => {
         userData.setLocalEntryArray(userDatas);

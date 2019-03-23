@@ -20,6 +20,11 @@ import RouterAuth from "index.js";
 
 // main.js
 spring.set("interceptor", itcpt => {
-    itcpt.addInterceptor(RouterAuth);
+    itcpt.addHook(RouterAuth);
+});
+
+// 或者
+spring.setHook((itcpt, context) => {
+    itcpt.addHook(RouterAuth);
 });
 ```

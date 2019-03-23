@@ -45,6 +45,14 @@ spring.set("routerx", (routerX, context) => {
 });
 ```
 
+或者
+
+```js
+spring.setRouter((routerX, context) => {
+    routerX.setup(option).addRoutes(option);
+});
+```
+
 ### routerX API
 
 #### `1. routerx.setup(option)`

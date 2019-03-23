@@ -83,6 +83,11 @@ export default {
     install(SpringX, Vue, useFn, startFn) {
 
         SpringX.prototype.routerx = routerX;
+
+        SpringX.prototype.setRouter = function(fn) {
+            return SpringX.prototype.set('routerx', fn);
+        }
+
         useFn.route = (ele) => {
             routerX.useRoute(ele);
         }

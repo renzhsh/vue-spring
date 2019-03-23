@@ -26,6 +26,11 @@ const store = new StoreX();
 export default {
     install(SpringX, Vue, useFn, startFn) {
         SpringX.prototype.storex = store;
+
+        SpringX.prototype.setStore = function(fn) {
+            return SpringX.prototype.set("storex", fn);
+        };
+
         useFn.vuex = ele => {
             store.registerModule(ele);
         };
