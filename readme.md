@@ -1,33 +1,26 @@
-# 安装运行
-```
-// 下载依赖包
-npm install
+# Vue Spring
 
-// 在本地启动
-npm run dev
+在一个常规的前后端（Frontend for Backends）程序中，我们需要使用 VueRouter、Vuex，有时需要注册 API 或者注册插件等，
+这些信息都是在全局性文件中进行配置的。这种全局性配置在大型项目中缺点就体现出来了，配置项多，维护困难。
 
-// 打包发布文件
-npm run build
+Vue Spring 采用了分而治之的思想，将这些配置项划分成各个模块，并注册到 Vue 系统实例中，开发者只需维护自己关心的模块即可。
+
+## Usage
+
+```js
+import SpringX from "rzs-spring";
+
+// 按照spring规范封装好的模块
+import System from "@/views/System";
+
+import App from "./App";
+
+const spring = new SpringX();
+
+spring.use(System).setup({
+    el: "#app",
+    render: h => h(App)
+});
 ```
 
-# 目录结构
-
-```
-├─build                 # webpack 编译工具
-├─config                # webpack 配置
-├─dist                  # 编译生成目录
-├─node_modules
-├─src
-│    ├─components         # 可复用的组件
-│    ├─config             # 系统全局配置
-│    │    ├─setting       # 系统配置项
-│    │    └─startup       # 系统启动项
-│    ├─util               # 自定义工具
-│    ├─views              # 业务视图
-│    ├─vueConfig          # vue配置工具
-│    │ app.Vue
-│    │ main.js
-│    │ vendors.js         # 对大文件进行优化
-├─static                # 静态文件目录，webpack 直接复制到dist目录
-├─index.html
-```
+请参考 [Spring 文档](./docs/readme.md)

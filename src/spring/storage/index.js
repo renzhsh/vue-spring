@@ -47,8 +47,6 @@ export function StorageFactory({ namespace = "vuejs__", storage = "local" }) {
     return ws;
 }
 
-_global.StorageFactory = StorageFactory;
-
 export default {
     /**
      *
