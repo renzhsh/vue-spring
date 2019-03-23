@@ -1,53 +1,57 @@
 /**
  * 启动项配置
  */
-import Vue from 'vue'
+import Vue from "vue";
 
-import App from './app'
+import App from "./app";
 
 /**********************第三方插件*************************/
 // element-ui
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css'
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 /**********************自定义插件*************************/
 
 /**********************功能模块配置**********************/
-import SpringX from './spring'
+import SpringX from "./spring";
 
-import System from '@/views/System'
+import System from "@/views/System";
 
 // 拦截器
-import interceptors from './config/interceptors'
+import interceptors from "./config/interceptors";
 
 // 用户数据
-import userDatas from './config/userData';
+import userDatas from "./config/userData";
 
 const spring = new SpringX();
 
 spring
-    .set('routerx', (routerX) => {
-        // routerX
-        //     .initialize({})
-        //     .useRoute(Layout.route)
+    .setRouter((routerX, context) => {
+        console.dir(routerX);
     })
-    .set('oauth2', (OAuth2) => {
+    .setStore((store, context) => {
+        console.dir(store);
+    })
+    .setHook((intcpt, context) => {
+        itcpt.addHook(interceptors);
+    })
+    .set("oauth2", OAuth2 => {
         OAuth2.setup({
             // Token路径
-            TokenPath: '/OAuth/Token',
+            TokenPath: "/OAuth/Token",
             // 客户端 Id
-            ClientId: '123456',
+            ClientId: "123456",
             // 客户端密钥
-            ClientSecret: 'abcdef',
+            ClientSecret: "abcdef"
         });
     })
-    .set('interceptor', (itcpt) => {
-        // itcpt.addInterceptor(interceptors)
-    })
-    .set('userData', userData => {
-        userData.setLocalEntryArray(userDatas)
+    .set("userData", userData => {
+        userData.setLocalEntryArray(userDatas);
     })
     .use([System])
-    .mount('#app', App);
+    .setup({
+        el: "#app",
+        render: h => h(App)
+    });

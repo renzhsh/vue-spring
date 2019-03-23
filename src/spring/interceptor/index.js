@@ -5,7 +5,10 @@ class Interceptor {
     constructor() {
         this.items = [];
     }
-    addInterceptor(ceptor) {
+    /**
+     * 添加钩子函数
+     */
+    addHook(ceptor) {
         let ceptors = [];
         if (ceptor instanceof Array) {
             ceptors = [...ceptor];
@@ -28,5 +31,9 @@ export default {
     install(SpringX, Vue, useFn, startFn) {
 
         SpringX.prototype.interceptor = intcpt;
+
+        SpringX.prototype.setHook = function(fn){
+            return SpringX.prototype.set('interceptor', fn);
+        }
     }
 }

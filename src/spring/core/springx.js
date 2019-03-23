@@ -1,6 +1,6 @@
-import Vue from 'vue';
+import Vue from "vue";
 
-import context from './context';
+import context from "./context";
 
 let springXStartFn = [];
 let springXUseFn = {};
@@ -14,8 +14,8 @@ export class SpringX {
     }
 
     /**
-     * 
-     * @param {*} { install, route, vuex } 
+     *
+     * @param {*} { install, route, vuex }
      */
     use(plugin) {
         let plugins = [];
@@ -30,25 +30,27 @@ export class SpringX {
             for (var useFn in springXUseFn) {
                 p[useFn] && springXUseFn[useFn](p);
             }
-        })
+        });
 
         return this;
     }
 
-    mount(el, app) {
+    setup(option) {
         springXStartFn.forEach(fn => {
             fn();
-        })
-
-        return new Vue({
-            el: el,
-            router: context.router,
-            store: context.store,
-            render: h => h(app)
         });
-    };
+
+        new Vue(
+            Object.assign({}, option, {
+                router: context.router,
+                store: context.store
+            })
+        );
+        return this;
+    }
 }
 
-SpringX.use = (module) => {
-    module.install && module.install(SpringX, Vue, springXUseFn, springXStartFn, context);
-}
+SpringX.use = module => {
+    module.install &&
+        module.install(SpringX, Vue, springXUseFn, springXStartFn, context);
+};
