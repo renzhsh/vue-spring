@@ -1,59 +1,101 @@
-# Vue Spring 简介
+# Vue Spring 文档
 
-在一个常规的前后端（Frontend for Backends）程序中，我们需要使用 VueRouter、Vuex，有时需要注册全局 API 或者注册插件等。
-基本上这些信息都是散落在各个模块内部的，没有统一的一个配置文件。在模块调整的时候，需要修改多处的代码。VueConfig 就是
-为了解决这个问题的。
+在一个常规的前后端（Frontend for Backends）程序中，我们需要使用 VueRouter、Vuex，有时需要注册 API 或者注册插件等，
+这些信息都是在全局性文件中进行配置的。这种全局性配置在大型项目中缺点就体现出来了，配置项多，维护困难。
 
-Vue Spring 提供了 VueRouter、Vuex、全局 API、Vue 组件和菜单项等内容的配置管理功能，以模块为单位注册到 Vue 系统实例中。
-Vue Spring 的最大优势在于划清了模块之间的界限，新增和删除模块时修改少量的配置代码即可完成。
+Vue Spring 采用了分而治之的思想，将这些配置项划分成各个模块，并注册到 Vue 系统实例中，开发者只需维护自己关心的模块即可。
 
-参考：
-[模块配置规范](./docs/specification.md)
-[Spring 扩展](./docs/springx-extent.md)
-
-# 安装 spring
+## 基本使用
 
 ```js
-npm install rzs-spring
-```
+import SpringX from "rzs-spring";
 
-# 导入
-
-```js
-import Spring from "rzs-spring";
-```
-
-<!-- # 添加引用
-```js
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-import Vuex from 'vuex';
-Vue.use(Vuex);
-``` -->
-
-# 使用
-
-## 1. 模块开发
-
-参考[模块配置规范](./docs/specification.md)配置模块
-
-## 2. 在 vue 实例初始化之前注册模块
-
-```js
+// 按照spring规范封装好的模块
 import System from "@/views/System";
-Spring.use(System);
+
+import App from "./App";
+
+const spring = new SpringX();
+
+spring.use(System).setup({
+    el: "#app",
+    render: h => h(App)
+});
 ```
 
-## 3. 配置并启动
+## API
+
+#### `SpringX()` 构造函数
+
+#### `spring.use(option)`
+
+通过`spring.use()`方法注入 vue 插件，配置路由列表和 store 项等
+
+#### `spring.set(name, fn)`
+
+通过`spring.set()`方法对模块的初始化进行配置
+
+#### `spring.setup(option)`
+
+通过`spring.setup()`方法对 Vue 的系统实例进行配置。`option`中可以包含 vue 的生命周期钩子函数，mixin、指令等。
+
+### 模块配置示例
+
+vue 插件开发参考[vue 插件](https://cn.vuejs.org/v2/guide/plugins.html)
 
 ```js
-Spring.set("routerx", routerX => {
-    // routerX 初始化设置
-    //routerX
-    // .initialize(...)
-    // .addRoutes(...)
-})
-    .use([System])
-    .mount("#app"); // 挂载到dom, Spring/Vue实例正式启动
+// system模块 index.js
+{
+    // vue插件
+    install: (Vue, option) => {},
+    // 路由配置
+    route: {
+        routeConfig: [
+            {
+                path: "/",
+                component: resolve => {
+                    require(["./Main"], resolve);
+                }
+            },
+            {
+                path: "/home",
+                component: resolve => {
+                    require(["./Home"], resolve);
+                }
+            }
+        ];
+    }
+
+}
+```
+
+```js
+// 用户管理模块 index.js
+{
+    // 路由配置
+    route: {
+        layout:'/', // 父组件路径
+        routeConfig: [
+            {
+                path: "/user",
+                component: resolve => {
+                    require(["./User"], resolve);
+                }
+            }
+        ];
+    },
+    vuex:{
+
+    }
+}
+```
+
+```js
+// 系统入口 main.js
+import System from "@/views/System";
+import User from "@/views/User";
+
+const spring = new SpringX();
+
+spring.use([System, User]);
 ```

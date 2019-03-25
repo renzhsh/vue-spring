@@ -111,7 +111,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             from: path.resolve(__dirname, '../src/spring/others'),
             to: path.resolve(__dirname, '../dist'),
             // ignore: ['.*']
-        })
+        }])
     ]
 })
 

@@ -1,6 +1,6 @@
 {
     "name": "rzs-spring",
-    "version": "0.1.1",
+    "version": "0.2.1",
     "description": "vue应用 通用框架",
     "main": "./js/index.js",
     "author": "renzhsh",
