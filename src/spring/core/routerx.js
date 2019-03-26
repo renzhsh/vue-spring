@@ -4,7 +4,7 @@ import context from './context';
 import output from '../utils/output';
 Vue.use(VueRouter);
 
-let Routes = [];
+const Routes = [];
 
 const m = new Map();
 
@@ -42,7 +42,7 @@ function useRoute({ layout, routeConfig }) {
 
         current.children = [...current.children, ...routeConfig];
     } else {
-        Routes = [...Routes, ...routeConfig];
+        Routes.push(...routeConfig);
     }
 
     mutation(routeConfig)
@@ -53,6 +53,8 @@ class RouterX {
         context.router = new VueRouter({
             routes: []
         });
+
+        context.routes = Routes;
     }
 
     setup(option) {

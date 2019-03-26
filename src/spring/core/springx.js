@@ -38,14 +38,14 @@ export class SpringX {
     }
 
     beforeSetup(fn) {
-        fn && fn(context);
+        fn && springXStartFn.push(fn);
 
         return this;
     }
 
     setup(option) {
         springXStartFn.forEach(fn => {
-            fn();
+            fn(context);
         });
 
         new Vue(

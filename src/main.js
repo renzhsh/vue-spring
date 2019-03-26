@@ -18,6 +18,7 @@ Vue.use(ElementUI);
 import SpringX from "./spring";
 
 import System from "@/views/System";
+import Demo from "@/views/Demo";
 
 // 拦截器
 import interceptors from "./config/interceptors";
@@ -29,13 +30,13 @@ const spring = new SpringX();
 
 spring
     .setRouter((routerX, context) => {
-        console.dir(routerX);
+        // console.dir(context);
     })
     .setStore((store, context) => {
-        console.dir(store);
+        // console.dir(store);
     })
     .setHook((intcpt, context) => {
-        itcpt.addHook(interceptors);
+        // intcpt.addHook(interceptors);
     })
     .set("oauth2", OAuth2 => {
         OAuth2.setup({
@@ -50,7 +51,10 @@ spring
     .set("userData", userData => {
         userData.setLocalEntryArray(userDatas);
     })
-    .use([System])
+    .use([System, Demo])
+    .beforeSetup(context => {
+        console.dir(context.routes);
+    })
     .setup({
         el: "#app",
         render: h => h(App)
