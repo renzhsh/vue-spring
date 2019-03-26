@@ -37,6 +37,12 @@ export class SpringX {
         return this;
     }
 
+    beforeSetup(fn) {
+        fn && fn(context);
+
+        return this;
+    }
+
     setup(option) {
         springXStartFn.forEach(fn => {
             fn();
