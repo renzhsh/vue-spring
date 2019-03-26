@@ -5,6 +5,8 @@ import context from "./context";
 let springXStartFn = [];
 let springXUseFn = {};
 
+context.Vue = Vue;
+
 export class SpringX {
     set(name, fn) {
         if (this[name]) {
