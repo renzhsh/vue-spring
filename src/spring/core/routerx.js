@@ -55,16 +55,11 @@ class RouterX {
         });
 
         context.routes = Routes;
-
-        this.auto = true;
     }
 
     setup(option) {
         context.router = new VueRouter(option);
 
-        if(option.auto !== undefined){
-            this.auto = option.auto;
-        }
         return this;
     }
 
@@ -79,7 +74,7 @@ class RouterX {
     }
 
     register() {
-        this.auto && context.router.addRoutes(Routes)
+        context.router.addRoutes(Routes)
         registered = true;
         return this;
     }
