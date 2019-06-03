@@ -1,6 +1,4 @@
-import { StorageFactory } from "../storage";
-
-const ls = StorageFactory({ storage: "local" });
+import { _ls as ls } from "@spring/base";
 
 function isString(str) {
     return typeof str == "string" && str.constructor == String;

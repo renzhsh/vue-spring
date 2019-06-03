@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import context from './context';
-import output from '../utils/output';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import { context } from "@spring/base";
+import output from "../utils/output";
 Vue.use(VueRouter);
 
 const Routes = [];
@@ -16,23 +16,29 @@ function mutation(routeConfig) {
         if (!m.has(element.path)) {
             m.set(element.path, element);
         } else {
-            output.error(`use Route Failed! Duplicate registration of path:${element.path}`)
+            output.error(
+                `use Route Failed! Duplicate registration of path:${
+                    element.path
+                }`
+            );
         }
         if (Array.isArray(element.children)) {
-            mutation(element.children)
+            mutation(element.children);
         }
     });
 }
 
 function useRoute({ layout, routeConfig }) {
     if (registered) {
-        output.warning("It's invalid that register routeConfig into vue after object router is created")
+        output.warning(
+            "It's invalid that register routeConfig into vue after object router is created"
+        );
     }
     if (!routeConfig) return;
     routeConfig = Array.isArray(routeConfig) ? routeConfig : [routeConfig];
     if (layout) {
         if (!m.has(layout)) {
-            throw `use Route Failed! not found component where path is '${layout}'`
+            throw `use Route Failed! not found component where path is '${layout}'`;
         }
 
         let current = m.get(layout);
@@ -45,7 +51,7 @@ function useRoute({ layout, routeConfig }) {
         Routes.push(...routeConfig);
     }
 
-    mutation(routeConfig)
+    mutation(routeConfig);
 }
 
 class RouterX {
@@ -74,7 +80,7 @@ class RouterX {
     }
 
     register() {
-        context.router.addRoutes(Routes)
+        context.router.addRoutes(Routes);
         registered = true;
         return this;
     }
@@ -84,18 +90,17 @@ const routerX = new RouterX();
 
 export default {
     install(SpringX, Vue, useFn, startFn) {
-
         SpringX.prototype.routerx = routerX;
 
         SpringX.prototype.setRouter = function(fn) {
-            return SpringX.prototype.set('routerx', fn);
-        }
+            return SpringX.prototype.set("routerx", fn);
+        };
 
-        useFn.route = (ele) => {
+        useFn.route = ele => {
             routerX.useRoute(ele);
-        }
+        };
         startFn.push(() => {
             routerX.register();
-        })
+        });
     }
-}
+};

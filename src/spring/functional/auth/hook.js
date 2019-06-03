@@ -1,5 +1,5 @@
 import perm from "./perm";
-import context from "../core/context";
+import { context } from "@spring/base";
 import ErrorPage from "./errorPage";
 
 export default class {

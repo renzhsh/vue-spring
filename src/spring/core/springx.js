@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-import context from "./context";
+import { context } from "@spring/base";
 
 let springXStartFn = [];
 let springXUseFn = {};

@@ -1,10 +1,10 @@
 import SpringX from "./core";
-import Storage from "./storage";
-import { StorageFactory } from "./storage";
-import Interceptor from "./interceptor";
-import UserData from "./userData";
+import Storage from "./base/storage";
+import { StorageFactory } from "./base";
+import Interceptor from "./functional/interceptor";
+import UserData from "./functional/userData";
 import { context } from "./core";
-import Auth2 from './auth';
+import Auth2 from './functional/auth';
 
 SpringX.use(Storage);
 SpringX.use(Interceptor);
