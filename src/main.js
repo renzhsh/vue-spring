@@ -28,6 +28,37 @@ import userDatas from "./config/userData";
 
 const spring = new SpringX();
 
+const perms = [
+    {
+        Name: "table",
+        Actions: [
+            {
+                Name: "Add"
+            },
+            {
+                Name: "Delete"
+            },
+            {
+                Name: "Update"
+            }
+        ]
+    },
+    {
+        Name: "Control",
+        Actions: [
+            {
+                Name: "Add"
+            },
+            {
+                Name: "Delete"
+            },
+            {
+                Name: "Update"
+            }
+        ]
+    }
+];
+
 spring
     .setRouter((routerX, context) => {
         // console.dir(context);
@@ -38,22 +69,26 @@ spring
     .setHook((intcpt, context) => {
         // intcpt.addHook(interceptors);
     })
-    .set("oauth2", OAuth2 => {
-        OAuth2.setup({
-            // Token路径
-            TokenPath: "/OAuth/Token",
-            // 客户端 Id
-            ClientId: "123456",
-            // 客户端密钥
-            ClientSecret: "abcdef"
-        });
+    .setAuth2(auth => {
+        auth.setToken("xxx")
+            .setPermission(
+                perms,
+                _ => {
+                    return {
+                        key: _.Name,
+                        actions: _.Actions
+                    };
+                },
+                _ => _.Name
+            )
+            .setup();
     })
-    .set("userData", userData => {
-        userData.setLocalEntryArray(userDatas);
-    })
+    // .set("userData", userData => {
+    //     userData.setLocalEntryArray(userDatas);
+    // })
     .use([System, Demo])
     .beforeSetup(context => {
-        console.dir(context.routes);
+        // console.dir(context.routes);
     })
     .setup({
         el: "#app",

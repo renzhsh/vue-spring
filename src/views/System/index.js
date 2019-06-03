@@ -4,6 +4,9 @@ export default {
             path: '/',
             component: resolve => {
                 require(['./Main'], resolve);
+            },
+            meta:{
+                permission:['control']
             }
         }]
     }
