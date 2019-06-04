@@ -1,6 +1,6 @@
 ## router 规范
 
-```
+```js
 {
     path: "/",
     name: 'main', // 唯一标识
@@ -17,4 +17,45 @@
         action: ['add', 'update', 'delete'] //  访问该页面需要的action
     }
 }
+```
+
+
+```js
+// 启动
+spring.setAuth2(auth => {
+        auth.setup();
+    })
+```
+
+```js
+// 设置权限
+const perms = [
+    {
+        Name: "table",
+        Actions: [
+            {
+                Name: "Add"
+            },
+            {
+                Name: "Delete"
+            },
+            {
+                Name: "Update"
+            }
+        ]
+    }
+];
+
+this.$auth2.setPermission(perms,
+                _ => {
+                    return {
+                        key: _.Name,
+                        actions: _.Actions
+                    };
+                },
+                _ => _.Name);
+```
+
+```js
+this.$auth2.AccessMenu
 ```

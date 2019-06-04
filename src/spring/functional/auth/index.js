@@ -1,6 +1,7 @@
 import Perm from "./perm";
 import RouterHook from "./hook";
 import RouteAction from "./action";
+import MenuManage from "./menu";
 import Vue from "vue";
 
 class Authorization {
@@ -53,6 +54,14 @@ class Authorization {
         });
     }
 }
+
+Object.defineProperties(Authorization.prototype, {
+    AccessMenu: {
+        get: function() {
+            return MenuManage.AccessMenu;
+        }
+    }
+});
 
 export default {
     install(SpringX, Vue, useFn, startFn, context) {

@@ -1,22 +1,34 @@
-import { _ls as ls } from "@spring/base";
+import { _ls as ls, _vueY as vueY } from "@spring/base";
 
 function isString(str) {
     return typeof str == "string" && str.constructor == String;
 }
 
 class Permission {
+    constructor() {
+        let token = ls.get("AccessToken", null),
+            permission = ls.get("Permission", null);
+
+        vueY.set("spring__token", token);
+        vueY.set("spring__permission", permission);
+    }
+
     setToken(token) {
         ls.set("AccessToken", token, 24 * 60 * 60 * 1000); //expiry 1 day
+        vueY.set("spring__token", token);
     }
 
     setPermission(permission) {
         ls.set("Permission", permission, 24 * 60 * 60 * 1000); //expiry 1 day
+        vueY.set("spring__permission", permission);
         this.map = undefined;
     }
 
     clear() {
         ls.remove("AccessToken");
         ls.remove("Permission");
+        vueY.set("spring__token", null);
+        vueY.set("spring__permission", null);
         this.map = undefined;
     }
 
@@ -53,7 +65,7 @@ class Permission {
         if (this.map === undefined) {
             this.loadMap();
         }
-
+        
         if (!isString(permission)) {
             throw "in hasPermission: permission must be string";
         }
