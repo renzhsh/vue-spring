@@ -13,7 +13,7 @@ VueX 配置项
     vuex: {
         path:'myModule', // 注册模块myModule
         //path:['nested', 'myModule'], // 注册嵌套模块 `nested/myModule`
-        config:{
+        module:{
             state,getter,mutation,action
         }
     }

@@ -1,6 +1,6 @@
 {
     "name": "rzs-spring",
-    "version": "0.2.6",
+    "version": "1.0.0",
     "description": "vue应用 通用框架",
     "main": "./js/index.js",
     "author": "renzhsh",
@@ -10,6 +10,7 @@
         "npm": ">= 3.0.0"
     },
     "dependencies": {
+        "axios": "^0.15.3",
         "vue": "^2.5.8",
         "vue-router": "^3.0.1",
         "vuex": "^2.2.1"
