@@ -1,6 +1,6 @@
 import UserData from "./userData";
 import Loading from "./loading";
-import { StorageFactory } from "../storage";
+import { StorageFactory } from "@spring/base";
 
 class UserDataX {
     constructor(context) {

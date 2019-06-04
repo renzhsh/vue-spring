@@ -5,15 +5,18 @@
 
 Vue Spring 采用了分而治之的思想，将这些配置项划分成各个模块，并注册到 Vue 系统实例中，开发者只需维护自己关心的模块即可。
 
-## 功能点
+## 功能点 (v1.0.0)
 
 -   [SpringX 的使用](./spring.md)
 -   [Storage](./storage.md)
+-   [VueY](./vuey.md)
+-   [Http](./http.md)
 -   [RouteX](./router.md)
+-   [Routes](./routes.md)
 -   [VueX](./vuex.md)
 -   [拦截器](./interceptor.md)
--   ~~userData~~
--   ~~oauth2~~
+-   [Auth](./auth.md)
+-   [userData](./userdata.md)
 -   [SpringX 模块开发](./spring.ext.md)
 
 ## 目录结构
@@ -27,16 +30,24 @@ Vue Spring 采用了分而治之的思想，将这些配置项划分成各个模
 ├─src
 │    ├─config
 │    ├─spring             # spring 源码
+│    │    ├─base          # 基础模块
+│    │    │   ├─storage
+│    │    │   ├─content
+│    │    │   └─vuey            # 简化版vuex
 │    │    ├─core          # 核心模块
-│    │    │   ├─routex
-│    │    │   ├─sprinx
+│    │    │   ├─http
+│    │    │   ├─routerx
+│    │    │   ├─routes          # 路由列表
 │    │    │   └─storex
-│    │    ├─interceptor   # 拦截器
-│    │    ├─oauth2
+│    │    ├─functional    # 业务模块
+│    │    │    ├─interceptor    # 拦截器
+│    │    │    ├─auth
+│    │    │    └─userData       # userData
+│    │    ├─util
 │    │    ├─others        # npm包配置
-│    │    ├─storage       # Storage
-│    │    └─userData      # userData
-│    ├─util
+│    │    ├─assembler     # 装配器
+│    │    └─springx       # springx框架
+│    │    
 │    ├─views              # 业务视图
 │    │    └─System        # System模块
 │    ├─app.Vue

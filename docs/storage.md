@@ -29,16 +29,14 @@ Spring 提供了默认的 storage: `ls`(localStorage) 和 `ss`(sessionStorage), 
 
 ```js
 // 全局访问
-Vue.$ls;
-Vue.$ss;
+import {_ls, _ss} from 'rzs-spring';
+_ls;
+_ss;
 
 // Vue实例内
 this.$ls;
 this.$ss;
 
-// Spring启动项配置中
-context.ls;
-context.ss;
 ```
 
 ## API

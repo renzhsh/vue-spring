@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import context from "./context";
+import { context } from "@spring/base";
 Vue.use(Vuex);
 
 class StoreX {

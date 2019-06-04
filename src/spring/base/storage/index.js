@@ -47,39 +47,43 @@ export function StorageFactory({ namespace = "vuejs__", storage = "local" }) {
     return ws;
 }
 
+const ls = StorageFactory({ storage: "local" });
+const ss = StorageFactory({ storage: "session" });
+
+export { ls as _ls };
+export { ss as _ss };
+
 export default {
     /**
      *
      */
     install(SpringX, Vue, useFn, startFn, context) {
-        const ls = StorageFactory({ storage: "local" });
-        const ss = StorageFactory({ storage: "session" });
-
-        context.ls = ls;
-        context.ss = ss;
-
         Vue.$ls = ls;
         Vue.$ss = ss;
 
-        Object.defineProperty(Vue.prototype, "$ls", {
+        Object.defineProperties(Vue.prototype, {
             /**
              * Define $ls property
              *
              * @return {WebStorage}
              */
-            get() {
-                return ls;
+            $ls: {
+                get: function get() {
+                    return ls;
+                }
             }
         });
 
-        Object.defineProperty(Vue.prototype, "$ss", {
+        Object.defineProperties(Vue.prototype, {
             /**
              * Define $ls property
              *
              * @return {WebStorage}
              */
-            get() {
-                return ss;
+            $ss: {
+                get: function get() {
+                    return ss;
+                }
             }
         });
     }

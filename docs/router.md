@@ -72,3 +72,19 @@ routerx.setup({
 #### `2. routerx.addRoutes(option)`
 
 即方法[`router.addRoutes`](https://router.vuejs.org/zh/api/#router-addroutes)
+
+## 路由懒加载
+
+当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
+
+参考[router 路由懒加载](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)
+
+```js
+const Foo = () => import('./Foo.vue')
+
+const router = new VueRouter({
+  routes: [
+    { path: '/foo', component: Foo }
+  ]
+})
+```

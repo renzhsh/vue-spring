@@ -1,5 +1,5 @@
-import context from '../core/context';
-import Vue from 'vue';
+import { context } from "@spring/base";
+import Vue from "vue";
 
 class Interceptor {
     constructor() {
@@ -20,7 +20,7 @@ class Interceptor {
             if (cpt.fn instanceof Function) {
                 cpt.fn(Vue, context);
             }
-        })
+        });
         return this;
     }
 }
@@ -29,11 +29,10 @@ const intcpt = new Interceptor();
 
 export default {
     install(SpringX, Vue, useFn, startFn) {
-
         SpringX.prototype.interceptor = intcpt;
 
-        SpringX.prototype.setHook = function(fn){
-            return SpringX.prototype.set('interceptor', fn);
-        }
+        SpringX.prototype.setHook = function(fn) {
+            return SpringX.prototype.set("interceptor", fn);
+        };
     }
-}
+};

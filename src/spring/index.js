@@ -1,18 +1,7 @@
-import SpringX from "./core";
-import Storage from "./storage";
-import { StorageFactory } from "./storage";
-import Interceptor from "./interceptor";
-import UserData from "./userData";
-import { context } from "./core";
-import Auth2 from './auth';
+import "@/spring/assembler";
+export * from "@spring/base";
+export * from "@spring/core";
 
-SpringX.use(Storage);
-SpringX.use(Interceptor);
-SpringX.use(UserData);
-SpringX.use(Auth2);
+import { SpringX } from "./springx";
 
 export default SpringX;
-
-export { StorageFactory };
-
-export { context as SpringContext };
