@@ -8,6 +8,7 @@ import { SpringX } from "./springx";
 import Storage from "@spring/base/storage";
 
 // core
+import HttpFactory from '@spring/core/http'; 
 import RouterX from "@spring/core/routerx";
 import StoreX from "@spring/core/storex";
 
@@ -18,6 +19,7 @@ import Auth2 from "@spring/functional/auth";
 
 SpringX.use(Storage);
 
+SpringX.use(HttpFactory);
 SpringX.use(RouterX);
 SpringX.use(StoreX);
 
