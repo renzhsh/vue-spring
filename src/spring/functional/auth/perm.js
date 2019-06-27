@@ -33,7 +33,11 @@ class Permission {
     }
 
     isLogined() {
-        return ls.get("AccessToken", false) == true;
+        if (ls.get("AccessToken", false)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     getToken() {
