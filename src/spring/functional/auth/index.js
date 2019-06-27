@@ -60,6 +60,11 @@ Object.defineProperties(Authorization.prototype, {
         get: function() {
             return MenuManage.AccessMenu;
         }
+    },
+    Token: {
+        get: function() {
+            return Perm.getToken();
+        }
     }
 });
 

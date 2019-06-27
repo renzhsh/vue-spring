@@ -33,7 +33,11 @@ class Permission {
     }
 
     isLogined() {
-        return ls.get("AccessToken", false);
+        return ls.get("AccessToken", false) == true;
+    }
+
+    getToken() {
+        return ls.get("AccessToken", null);
     }
 
     loadMap() {
@@ -65,7 +69,7 @@ class Permission {
         if (this.map === undefined) {
             this.loadMap();
         }
-        
+
         if (!isString(permission)) {
             throw "in hasPermission: permission must be string";
         }
