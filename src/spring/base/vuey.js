@@ -18,7 +18,7 @@ export class VueY {
      */
     set(key, value) {
         if (typeof value === "function") {
-            if (this[key]) {
+            if (Object.getOwnPropertyNames(this).indexOf(key) > -1) {
                 throw `in vueY: Cannot redefine property: ${key}`;
             }
             Object.defineProperty(this, key, {
@@ -28,7 +28,7 @@ export class VueY {
             });
         } else {
             this.state.$set(this.state.obj, key, value);
-            if (!this[key]) {
+            if (Object.getOwnPropertyNames(this).indexOf(key) == -1) {
                 Object.defineProperty(this, key, {
                     get: function() {
                         return this.state.obj[key];
