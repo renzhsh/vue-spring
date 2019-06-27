@@ -76,11 +76,13 @@ this.$auth2.setPermission(perms,
 ```
 #### clear() 用户注销后，调用该函数。清除token和权限
 
-#### isLogined() 判断用户是否登录（依据是否设置token）
+#### isLogined() 判断用户是否登录（依据是否设置token）,返回true | false
 
 #### hasPermission(permission, action = []) 判断是否有权限
 
 #### AccessMenu 可访问的菜单列表。剔除无权限和隐藏的菜单。
+
+#### Token 获取AccessToken, 如果为空则返回null
 
 ### action 指令
 ```html
