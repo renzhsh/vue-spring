@@ -8,7 +8,7 @@ Vue Spring 采用了分而治之的思想，将这些配置项划分成各个模
 ## Usage
 
 ```js
-import SpringX from "rzs-spring";
+import SpringX from "vue-spring";
 
 // 按照spring规范封装好的模块
 import System from "@/views/System";

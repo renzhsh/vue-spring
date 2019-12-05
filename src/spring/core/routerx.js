@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { context } from "@spring/base";
+import { context } from "@/spring/base";
 import routeManage from "./routes";
 Vue.use(VueRouter);
 

@@ -1,18 +1,18 @@
 {
-    "name": "rzs-spring",
-    "version": "1.0.1",
-    "description": "vue应用 通用框架",
-    "main": "./js/index.js",
-    "author": "renzhsh",
-    "license": "MIT",
-    "engines": {
-        "node": ">= 4.0.0",
-        "npm": ">= 3.0.0"
-    },
-    "dependencies": {
-        "axios": "^0.15.3",
-        "vue": "^2.5.8",
-        "vue-router": "^3.0.1",
-        "vuex": "^2.2.1"
-    }
+  "name": "vue-spring",
+  "version": "1.1.0",
+  "description": "vue的模块化开发框架",
+  "main": "vue-spring.umd.min.js",
+  "author": "renzhsh",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.1",
+    "vuex": "^2.5.0"
+  }
 }

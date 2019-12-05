@@ -1,6 +1,6 @@
-import { _ls as ls, _vueY as vueY } from "@spring/base";
+import { _ls as ls, _vueY as vueY } from "@/spring/base";
 import perm from "./perm";
-import { Routes } from "@spring/core";
+import { Routes } from "@/spring/core";
 
 /**
  * 菜单管理
