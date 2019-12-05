@@ -6,19 +6,14 @@ import Vue from "vue";
 import App from "./app";
 
 /**********************第三方插件*************************/
-// element-ui
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-
-Vue.use(ElementUI);
 
 /**********************自定义插件*************************/
 
 /**********************功能模块配置**********************/
 import SpringX from "./spring";
 
-import System from "@/views/System";
-import Demo from "@/views/Demo";
+import System from "@/views/system";
+import Demo from "@/views/demo";
 
 // 拦截器
 import interceptors from "./config/interceptors";

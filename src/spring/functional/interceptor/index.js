@@ -1,4 +1,4 @@
-import { context } from "@spring/base";
+import { context } from "@/spring/base";
 import Vue from "vue";
 
 class Interceptor {

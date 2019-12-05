@@ -1,4 +1,4 @@
-import { _ls as ls, _vueY as vueY } from "@spring/base";
+import { _ls as ls, _vueY as vueY } from "@/spring/base";
 
 function isString(str) {
     return typeof str == "string" && str.constructor == String;

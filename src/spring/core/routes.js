@@ -1,7 +1,7 @@
 /**
  * 路由列表
  */
-import { context } from "@spring/base";
+import { context } from "@/spring/base";
 
 export const Routes = []; // 路由
 const RouteIndex = new Map(); // 路由索引
