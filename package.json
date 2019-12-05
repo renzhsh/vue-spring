@@ -8,7 +8,7 @@
     "build": "vue-cli-service build --target lib src/spring/index.js"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.19.0",
     "core-js": "^3.3.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.1",
