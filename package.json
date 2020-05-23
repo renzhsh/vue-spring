@@ -1,8 +1,8 @@
 {
   "name": "vue-spring",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "main": "vue-spring.umd.min.js",
+  "main": "dist/vue-spring.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib src/spring/index.js"

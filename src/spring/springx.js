@@ -49,10 +49,10 @@ export class SpringX {
         });
 
         new Vue(
-            Object.assign({}, option, {
+            Object.assign({
                 router: context.router,
                 store: context.store
-            })
+            }, option)
         );
         return this;
     }
