@@ -1,4 +1,5 @@
 import { WebStorage } from "./WebStorage";
+import { Cookies } from './cookies';
 
 // eslint-disable-next-line
 const _global = typeof window !== "undefined" ? window : global || {};
@@ -33,11 +34,46 @@ export function StorageFactory({ namespace = "vuejs__", storage = "local" }) {
     return ws;
 }
 
-export const localStorage = StorageFactory({ storage: "local" });
-export const sessionStorage = StorageFactory({ storage: "session" });
+export const local = StorageFactory({ storage: "local" });
+export const session = StorageFactory({ storage: "session" });
+export const cookies = new Cookies();
 
 export default {
+    install(Spring, Vue) {
+        Object.defineProperties(Vue, {
+            $local: {
+                get: function () {
+                    return local;
+                }
+            },
+            $session: {
+                get: function () {
+                    return session;
+                }
+            },
+            $cookies: {
+                get: function () {
+                    return cookies;
+                }
+            }
+        })
 
-    install() { }
-
+        Object.defineProperties(Vue.prototype, {
+            $local: {
+                get: function () {
+                    return local;
+                }
+            },
+            $session: {
+                get: function () {
+                    return session;
+                }
+            },
+            $cookies: {
+                get: function () {
+                    return cookies;
+                }
+            }
+        })
+    }
 };
